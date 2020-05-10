@@ -1,0 +1,28 @@
+{% extends "User/header.html" %}
+{% load crispy_forms_tags %}
+{% block login_active %}active{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class=" loginform col-sm-4 col-sm-offset-4">
+                    <h3>{{title}}</h3>
+                    <hr/>
+                    <form class="form-horizontal" role="form" action="{% url 'User:login_user'%}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{forms|crispy}}
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="btn btn-success">Login</button>
+                            </div>
+                            <a href="{% url 'User:signup' %}"><p style="color: lightblue;">Create Account</p></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+
+</div>
+{% endblock %}

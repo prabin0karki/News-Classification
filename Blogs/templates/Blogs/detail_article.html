@@ -1,0 +1,58 @@
+{% extends "Blogs/header.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="card mb-4">
+        {% if detailarticle.Image %}
+        <img class="card-img-top" src="{{detailarticle.Image.url}}" alt="Card image cap" >
+        {% endif %}
+        <div class="card-body">
+
+          <h1 class="card-title">{{detailarticle.Article_title}}</h1>
+
+          <h3 class="card-text">{{detailarticle.Article_Short_Descriptions|safe}}</h3>
+          <p class="card-text">{{detailarticle.Article_Content|safe}}</p>
+        </div>
+        <div class="card-footer text-muted">
+          {{detailarticle.publish_date}}<strong>Published</strong> by
+          <a href="#">{{detailarticle.publish_by}}</a>
+        </div>
+         <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col-md-2"><a href="#"><i class="fas fa-thumbs-up"><strong>Like</strong></i></a></div>
+            <div class="col-md-2"><a href="/Comment/showcomment/{{detailarticle.id}}"><i class="fas fa-comment"><strong>Comment:</strong></i></a></div>
+            <div class="col-md-8"></div>
+          </div>
+          <div id="comment_bubble">
+          <!-- <form action="" method="POST" enctype="multipart/form-data" id="newsform">
+    {% csrf_token %}
+    {{form.media}}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form> -->
+</div>
+<!--    {% for comment in showcomment %}
+    <div><h3>{{comment.Commented_by}}</h3><p>{{comment.Comment}}</p></div>
+    {% endfor %} -->
+        </div>
+         <!-- <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div> -->
+      </div>
+
+	</div>
+	<div class="col-md-2"></div>
+
+</div>
+
+{% endblock %}

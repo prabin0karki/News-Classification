@@ -1,0 +1,144 @@
+{% extends "Blogs/header.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load staticfiles%}
+
+<div class="row">
+
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <header class="profile  masthead" style="background-image: url('{% static 'img/home-bg.jpg' %}')">
+        <div class="container">
+          <div class=" profile ">
+
+            {% for image in showprofile%}
+            {% if image.Image %}
+
+            <img class=" image " src="{{image.Image.url}}" alt="Card image cap" >
+
+            {% else %}
+            <img class="image " src="{% static 'img/lo.png'%}" alt="Card image cap" >
+
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="user">
+            <span class="subheading">
+              <ul class="lo">
+                <li><strong>{{user.first_name}} {{user.last_name}}</strong></li>
+              </ul>
+
+            </span>
+          </div>
+        </div>
+      </header>
+      <div class="info">
+        <nav>
+          <ul class="uli">
+            <li class="im"><a href="#"></a></li>
+            <li class="lio"><a href="{% url 'Blogs:user_post'%}"><i class="fa fa-info-circle" aria-hidden="true">Timeline</i></a></li>
+            <li class="lio"><a href="#"><i class="fa fa-address-book" aria-hidden="true" data-toggle="modal" data-target="#myModal">About</i></a></li>
+            <li class="lio"><a href="#"><i class="fas fa-envelope">Message</i></a></li>
+            <li class="lio"><a href="/User/UserImage/{{user.id}}"><i class="far fa-edit">Edit Profile</i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+
+
+<div class="row">
+
+	<div class="col-md-2"></div>
+ <div class="col-md-8">
+  <div class="card mb-4">
+
+
+    <h1 class="my-4">Article Posted BY:{{user.first_name}}&nbsp;{{ user.last_name }}
+
+    </h1>
+    <!-- Blog Post -->
+    {% for article in user_posts%}
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-footer text-muted">
+          <h2 class="card-title">Categories:<strong>{{article.Category}}</strong></h2>
+        </div>
+        <div class="row">
+          {% if article.Image %}
+          <div class="col-md-3">
+
+            <img class="card-img-top" src="{{article.Image.url}}" alt="Card image cap" >
+
+          </div>
+          {% endif %}
+
+          <div class="col-md-9"><h4 class="card-title">{{article.Article_title}}</h4>
+            <p class="card-text">{{article.Article_Short_Descriptions|safe}}</p><a href="/Blogs/index/{{article.id}}">See More &rarr;</a></div>
+          </div>
+          
+        </div>
+        <div class="card-footer text-muted">
+          {{article.publish_date}}<strong>Published by</strong>
+          <a href="#">{{article.publish_by}}</a>
+        </div>
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col-md-2"><a href="#"><i class="fas fa-thumbs-up"><strong>Like</strong></i></a></div>
+            <div class="col-md-2"><a href="/Comment/showcomment/{{article.id}}"><i class="fas fa-comment"><strong>Comment</strong></i></a></div>
+            <div class="col-md-8"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+          <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="col-md-2"></div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <!--  <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+       <h4 class="modal-title">Personal Info</h4>
+     </div>
+     <div class="modal-body">
+      <p><strong>Name:</strong> &nbsp{{user.first_name}} &nbsp{{user.last_name}}</p>
+      <p><strong> Email:</strong> &nbsp{{user.email}}</p>
+      <p><strong>Location:</strong> &nbsp {{user.location}}</p>
+      <p><strong>Gender:</strong> &nbsp {{user.Gender}}</p>
+      <p><strong>Date of Birth:</strong> &nbsp{{user.birth_date}}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+{% endblock %}

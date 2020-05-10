@@ -1,0 +1,189 @@
+{% load staticfiles%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Home - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  -->
+  <link href='{% static "bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <script src='{% static "bootstrap/js/bootstrap.min.js"%}'></script>
+  <link href='{% static "fontawesome/css/fontawesome-all.css" %}' rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <!-- <link href="css/blog-home.css" rel="stylesheet"> -->
+  <link href='{% static "css/blog-home.css"%}' rel="stylesheet">
+
+  <style type="text/css">
+  .card-img-top{
+    height: 45mm;
+    width: 35mm;
+    margin: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #a7a7a7;
+    padding: 5px; 
+  }
+
+  .image{
+    height: 40mm;
+    width: 35mm;
+    margin: 10px;
+    background-color: #e9ecef;
+    position: absolute;
+    left: 0px;
+    bottom:0px;
+     border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+
+.profile{
+  height: 300px;
+
+}
+
+/*div.img {
+    height: auto;
+    width: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+
+  }*/
+  .lo{
+    list-style-type: none;
+    padding: 10px;
+    margin: 10px;
+  }
+  .user{
+    position: absolute;
+    left: 150px;
+    bottom:50px;
+
+  }
+
+  .info{
+    border: 1px solid #a7a7a7;
+    height: 40px;
+  }
+
+  .uli {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*background-color: white;*/
+
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+.im a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 19px 85px;
+    text-decoration: none;
+}
+
+.lio a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 8px 30px;
+    text-decoration: none;
+}
+
+.lio a:hover:not(.active) {
+    background-color: #A9A9A9;
+}
+
+.active {
+    background-color: #A9A9A9;
+}
+
+</style>
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class=" nav navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'Blogs:index'%}"><strong>E</strong> blogs</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <li class="nav-item active">
+            <form action="." method="post">
+<input type="text" name="name" value="">
+<input type="submit" value="Search">
+</form>
+          </li>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Blogs:index'%}"><i class="fa fa-home" aria-hidden="true">Home</i>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li><a class="nav-link" href="{% url 'Blogs:add_post'%}"><i class="fa fa-plus-square"> PostArticle</i></a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'User:logout_user'%}"><i class="fas fa-power-off">Logout</i></a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Blogs:user_post' %}"><i class="fas fa-user"  style="color: Green";><strong>{{request.user.username}}</strong></i>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+     <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{forms|crispy}}
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="btn btn-success">Uploade Image</button>
+                            </div>
+                        </div>
+                    </form>
+      <!-- Footer -->
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+      <!-- Bootstrap core JavaScript -->
+
+      <script src='{% static "bootstrap/js/jquery.min.js" %}'></script>
+      <script src='{% static "bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+</body>
+
+</html>
+
+
+
+
+

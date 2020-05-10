@@ -1,0 +1,56 @@
+{% extends "Comment/header.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="card mb-4">
+      {% if detailarticle.Image %}
+      <img class="card-img-top" src="{{detailarticle.Image.url}}" alt="Card image cap" >
+      {% endif %}
+      <div class="card-body">
+
+        <h1 class="card-title">{{detailarticle.Article_title}}</h1>
+
+        <h3 class="card-text">{{detailarticle.Article_Short_Descriptions|safe}}</h3>
+        <p class="card-text">{{detailarticle.Article_Content|safe}}</p>
+      </div>
+      <div class="card-footer text-muted">
+        {{detailarticle.publish_date}}<strong>Published</strong> by
+        <a href="#">{{detailarticle.publish_by}}</a>
+      </div>
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col-md-2"><a href="#"><i class="fas fa-thumbs-up"><strong>Like</strong></i></a></div>
+          <div class="col-md-2"><a href="#"><i class="fas fa-comment"><strong>Comment</strong></i></a></div>
+          <div class="col-md-8"></div>
+        </div>
+        <div class="comment">
+          <form action="" method="POST" enctype="multipart/form-data" id="newsform">
+          {% csrf_token %}
+          {{form.media}}
+          {{form|crispy}}
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        </div>
+        
+        {% for comment in showcomment %}
+
+
+        <div id="shell">
+    <div id="title"><p><strong>{{comment.Commented_by}}:</strong>{{comment.Comment}}</p></div>
+</div>
+<div>g</div>
+
+          <!--  <div class=" card-footer text-muted" style="border-radius: 60px;">
+          <h2 class="card-title">{{comment.Commented_by}}</h2><p>{{comment.Comment}}</p>
+        </div> -->
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,129 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Home - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  -->
+  <link href='{% static "bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <script src='{% static "bootstrap/js/bootstrap.min.js"%}'></script>
+  <link href='{% static "fontawesome/css/fontawesome-all.css" %}' rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <!-- <link href="css/blog-home.css" rel="stylesheet"> -->
+  <link href='{% static "css/blog-home.css"%}' rel="stylesheet">
+  <style type="text/css">
+  body {
+    padding-top: 54px;
+  }
+
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+
+  }
+  .card-img-top{
+    height: 45mm;
+    width: 35mm;
+    margin: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #a7a7a7;
+    padding: 5px; 
+  }
+  #cke_id_Content{
+    width: 100%;
+  }
+  .loginform{
+       margin:50px 0px; padding:0px;
+    }
+  #shell {
+ width: auto;
+ height: auto;
+ background: lightGrey;
+ -moz-border-radius: 6px; 
+ border-radius: 20px; /* standards-compliant: (IE) */ 
+}
+
+#title {
+ background: lightGrey;
+ padding: 15px;
+ /*-moz-border-radius: 6px 6px 0 0;*/
+ border-radius: 60px; /* standards-compliant: (IE) *//
+</style>
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'Blogs:index'%}"><strong>E</strong> blogs</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Blogs:index'%}"><i class="fa fa-home" aria-hidden="true">Home</i>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li><a class="nav-link" href="{% url 'Blogs:add_post'%}"><i class="fa fa-plus-square"> Post_Article</i></a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'User:logout_user'%}"><i class="fas fa-power-off">Logout</i></a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Blogs:user_post' %}"><i class="fas fa-user"  style="color: Green";><strong>{{request.user.username}}</strong></i>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+      {% block content %}
+      {% endblock %}
+
+      <!-- Footer -->
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+      <!-- Bootstrap core JavaScript -->
+
+      <script src='{% static "bootstrap/js/jquery.min.js" %}'></script>
+      <script src='{% static "bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+
+<script type="text/javascript" src='{% static "ckeditor/ckeditor/ckeditor.js" %}'></script>
+<!-- <script type="text/javascript" src='{% static "bootstrap/js/jquery.js"%}'></script>
+<script src="js/ckeditor/ckeditor.js"></script>
+<script src="js/validation/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#newsform').validate();
+    });
+
+</script> -->
+
+</body>
+
+</html>
+
+
+
+
+
